@@ -54,10 +54,46 @@ class Function:
 
         return fun
 
-function = Function(c=[4, 1], bounds=[(-10, 10) for _ in range(2)], A_eq=[[3, 1]], b_eq=[3],
-    A_gt=[[4, 3]], b_gt=[6], A_lt=[[1, 2]], b_lt=[4])
+# function = Function(c=[4, 1], bounds=[(-10, 10) for _ in range(2)], A_eq=[[3, 1]], b_eq=[3],
+#     A_gt=[[4, 3]], b_gt=[6], A_lt=[[1, 2]], b_lt=[4])
 
-print(differential_evolution(func=function.f, bounds=function.bounds, popsize=150, maxiter=5000))
+# function = Function(c=[-3, -1], bounds=[(0, 10) for _ in range(2)], A_lt=[
+#     [4, 3],
+#     [4, 1],
+#     [4, -1]
+# ], b_lt=[12, 8, 9])
+# solution is [3/2, 2]
+
+# function = Function(c=[-10, -1], bounds=[(0, 10) for _ in range(2)],
+#     A_gt=[[4, -5]], b_gt=[5], A_lt=[[2, 11]], b_lt=[7])
+# solution is [3.5, 0]
+
+# function = Function(c=[-1, 3], bounds=[(0, 10) for _ in range(2)],
+#     A_gt=[
+#         [-5, -4],
+#         [2, 1]
+#     ], b_gt=[-9, -5],
+#     A_lt=[
+#         [3, -2]
+#     ], b_lt=[3])
+# solution is [1, 0]
+
+# function = Function(c=[4, -1, 1], bounds=[(0, 10) for _ in range(3)],
+#     A_eq=[
+#         [-4, 1, -2],
+#         [5, 2, 4]
+#     ], b_eq=[-3, 2],
+#     A_gt=[
+#         -2, -3, 3
+#     ], b_gt=[-1])
+# solution does not exist
+
+function = Function(c=[-7, 7, -2], bounds=[(0, 10) for _ in range(3)], A_eq=[[3, -1, 5]], b_eq=[3], A_gt=[[1, 2, -3]], b_gt=[5])
+# solution is [11/7, 12/7, 0]
+
+
+
+print('solution is', differential_evolution(func=function.f, bounds=function.bounds, popsize=150, maxiter=5000).x)
 
 def f(x):
     if abs(3*x[0] + x[1] - 3) > 0.01:
